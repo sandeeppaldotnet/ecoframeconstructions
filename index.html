@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildPro Construction</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #ff6b00;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #e05d00;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #222;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #777;
+            font-size: 1.1rem;
+        }
+        
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b00;
+        }
+        
+        .logo span {
+            color: #333;
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #ff6b00;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Carousel */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .carousel-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .carousel-item.active {
+            opacity: 1;
+        }
+        
+        .carousel-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .carousel-item-1 {
+            background-image: url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .carousel-item-2 {
+            background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .carousel-item-3 {
+            background-image: url('https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .carousel-item-4 {
+            background-image: url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            z-index: 1;
+            width: 90%;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.3s ease;
+        }
+        
+        .hero .btn {
+            animation: fadeInUp 1.5s ease;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .carousel-indicator.active {
+            background: #ff6b00;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .about-image {
+            flex: 1;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .service-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* Projects Section */
+        .projects {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            height: 250px;
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-overlay h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-overlay a {
+            color: #ff6b00;
+            font-weight: bold;
+        }
+        
+        /* Industries Section */
+        .industries {
+            padding: 80px 0;
+        }
+        
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .industry-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .industry-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .industry-item i {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 15px;
+        }
+        
+        .industry-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Blog Section */
+        .blog {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-content .meta {
+            display: flex;
+            margin-bottom: 10px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .blog-content .meta span {
+            margin-right: 15px;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .blog-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .contact-details div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-details i {
+            font-size: 1.2rem;
+            color: #ff6b00;
+            margin-right: 15px;
+            width: 20px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #222;
+            color: #fff;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #ff6b00;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #bbb;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #ff6b00;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: #fff;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+            }
+        
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 8px 15px;
+            }
+            
+            .carousel-controls {
+                bottom: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <!-- <header> -->
+        <!-- <div class="container header-container"> -->
+            <!-- <a href="#" class="logo">Build<span>Pro</span></a> -->
+            <!-- <div class="mobile-menu-btn"> -->
+                <!-- <i class="fas fa-bars"></i> -->
+            <!-- </div> -->
+            <!-- <nav> -->
+                <!-- <ul> -->
+                    <!-- <li><a href="#home">Home</a></li> -->
+                    <!-- <li><a href="#about">About Us</a></li> -->
+                    <!-- <li><a href="#services">Services</a></li> -->
+                    <!-- <li><a href="#projects">Projects</a></li> -->
+                    <!-- <li><a href="#industries">Industries</a></li> -->
+                    <!-- <li><a href="#blog">Blog</a></li> -->
+                    <!-- <li><a href="#contact">Contact</a></li> -->
+                <!-- </ul> -->
+            <!-- </nav> -->
+        <!-- </div> -->
+    <!-- </header> -->
+<header>
+        <div class="container header-container position-relative" style="padding: 35px 0;">
+            <a href="#" class="logo"><img src="https://www.dropbox.com/scl/fi/4dbyk0d3x79won4p4di7a/LOGO-ECO.png?rlkey=zvx2r34dvr1sp52vs1cq9v3ye&st=hh2l7ubw&dl=0" style="    width: 150px;
+    height: 100px;
+    object-fit: contain;
+    position: absolute;
+    top: 0px;"></a>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#industries">Industries</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Carousel -->
+    <section class="hero" id="home">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item carousel-item-1 active">
+                    <div class="hero-content">
+                        <h1>Building Your Vision, Constructing Your Future</h1>
+                        <p>We deliver exceptional construction services with quality, safety and sustainability at the core of everything we do.</p>
+                        <a href="#contact" class="btn">Get a Free Quote</a>
+                    </div>
+                </div>
+                <div class="carousel-item carousel-item-2">
+                    <div class="hero-content">
+                        <h1>Quality Construction Services</h1>
+                        <p>From small renovations to large commercial projects, we handle every detail with precision.</p>
+                        <a href="#services" class="btn">Our Services</a>
+                    </div>
+                </div>
+                <div class="carousel-item carousel-item-3">
+                    <div class="hero-content">
+                        <h1>Sustainable Building Solutions</h1>
+                        <p>Eco-friendly construction methods that reduce environmental impact without compromising quality.</p>
+                        <a href="#about" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="carousel-item carousel-item-4">
+                    <div class="hero-content">
+                        <h1>Heavy Equipment Experts</h1>
+                        <p>State-of-the-art equipment and skilled operators for all your construction needs.</p>
+                        <a href="#services" class="btn">View Equipment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <div class="carousel-indicator active" data-slide-to="0"></div>
+                <div class="carousel-indicator" data-slide-to="1"></div>
+                <div class="carousel-indicator" data-slide-to="2"></div>
+                <div class="carousel-indicator" data-slide-to="3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Us</h2>
+                <p>Learn more about our company and our values</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Building Excellence Since 1995</h3>
+                    <p>BuildPro Construction is a full-service construction company with over 25 years of experience in the industry. We specialize in commercial, industrial, and residential construction projects of all sizes.</p>
+                    <p>Our team of skilled professionals is dedicated to delivering high-quality construction services while maintaining the highest standards of safety and sustainability.</p>
+                    <p>We take pride in our ability to complete projects on time and within budget, while exceeding our clients' expectations.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Construction Site">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive construction solutions tailored to your needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Construction Management">
+                    </div>
+                    <div class="service-content">
+                        <h3>Construction Management</h3>
+                        <p>We oversee all phases of construction projects from planning to completion, ensuring quality and efficiency.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="General Contracting">
+                    </div>
+                    <div class="service-content">
+                        <h3>General Contracting</h3>
+                        <p>Full-service contracting for commercial and residential projects with a focus on quality craftsmanship.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Design & Build">
+                    </div>
+                    <div class="service-content">
+                        <h3>Design & Build</h3>
+                        <p>Integrated approach combining design and construction expertise for seamless project delivery.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Renovations">
+                    </div>
+                    <div class="service-content">
+                        <h3>Renovations</h3>
+                        <p>Transforming existing spaces with innovative design and quality construction techniques.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Heavy Equipment">
+                    </div>
+                    <div class="service-content">
+                        <h3>Heavy Equipment</h3>
+                        <p>State-of-the-art equipment and skilled operators for all your construction needs.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Customer Services">
+                    </div>
+                    <div class="service-content">
+                        <h3>Customer Services</h3>
+                        <p>Dedicated support throughout your project with prompt response and reliable solutions.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Projects</h2>
+                <p>Explore our portfolio of completed construction projects</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Commercial Building">
+                    <div class="project-overlay">
+                        <h3>Commercial Building</h3>
+                        <a href="#">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Residential Complex">
+                    <div class="project-overlay">
+                        <h3>Residential Complex</h3>
+                        <a href="#">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Industrial Facility">
+                    <div class="project-overlay">
+                        <h3>Industrial Facility</h3>
+                        <a href="#">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hospital Renovation">
+                    <div class="project-overlay">
+                        <h3>Hospital Renovation</h3>
+                        <a href="#">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="School Construction">
+                    <div class="project-overlay">
+                        <h3>School Construction</h3>
+                        <a href="#">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bridge Construction">
+                    <div class="project-overlay">
+                        <h3>Bridge Construction</h3>
+                        <a href="#">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="industries" id="industries">
+        <div class="container">
+            <div class="section-title">
+                <h2>Industries We Serve</h2>
+                <p>We provide construction services across various industries</p>
+            </div>
+            <div class="industries-grid">
+                <div class="industry-item">
+                    <i class="fas fa-city"></i>
+                    <h3>Commercial</h3>
+                    <p>Office buildings, retail spaces, hotels, and more</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-home"></i>
+                    <h3>Residential</h3>
+                    <p>Single-family homes, apartments, condominiums</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-industry"></i>
+                    <h3>Industrial</h3>
+                    <p>Factories, warehouses, manufacturing plants</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-hospital"></i>
+                    <h3>Healthcare</h3>
+                    <p>Hospitals, clinics, medical facilities</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-school"></i>
+                    <h3>Education</h3>
+                    <p>Schools, universities, educational facilities</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-road"></i>
+                    <h3>Infrastructure</h3>
+                    <p>Roads, bridges, public works</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest Blog Posts</h2>
+                <p>Stay updated with our construction insights and news</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Construction Technology">
+                    </div>
+                    <div class="blog-content">
+                        <div class="meta">
+                            <span><i class="far fa-calendar"></i> June 15, 2023</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <h3>Emerging Technologies in Construction</h3>
+                        <p>Explore how new technologies are revolutionizing the construction industry and improving efficiency.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sustainable Construction">
+                    </div>
+                    <div class="blog-content">
+                        <div class="meta">
+                            <span><i class="far fa-calendar"></i> May 28, 2023</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <h3>Sustainable Construction Practices</h3>
+                        <p>Learn about eco-friendly building materials and techniques that reduce environmental impact.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Construction Safety">
+                    </div>
+                    <div class="blog-content">
+                        <div class="meta">
+                            <span><i class="far fa-calendar"></i> April 10, 2023</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <h3>Improving Safety on Construction Sites</h3>
+                        <p>Discover the latest safety protocols and equipment that are making construction sites safer.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with our team for your construction needs</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's Build Something Together</h3>
+                    <p>Whether you're planning a new construction project or need help with renovations, our team is ready to assist you. Contact us today to discuss your project requirements.</p>
+                    <div class="contact-details">
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>LHR Manson,NO 1365, 42ND Cross,Kanakpura MAIN Road,JP Nagar,1st Phase ,Sarakki Gate Bangalore Pin No-560078,Karnataka,India </span>
+                        </div>
+                        <div>
+                            <i class="fas fa-phone"></i>
+                            <span>Call +91 8072913283/9659887171</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@ecoframeconstructions.com</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri: 8:00 AM - 6:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+				<div class="col-md-12">
+				
+					<iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3888.971958818889!2d77.57058127507538!3d12.909523787400145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDU0JzM0LjMiTiA3N8KwMzQnMjMuNCJF!5e0!3m2!1sen!2sin!4v1750481184956!5m2!1sen!2sin" width="1100" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                     <h3>EcoFrame <span>Constructions</span></h3>
+                    <p>LHR Manson,NO 1365, 42ND Cross,Kanakpura MAIN Road,JP Nagar,1st Phase ,Sarakki Gate Bangalore Pin No-560078,Karnataka,India Call +91 8072913283/9659887171</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Construction Management</a></li>
+                        <li><a href="#">General Contracting</a></li>
+                        <li><a href="#">Design & Build</a></li>
+                        <li><a href="#">Renovations</a></li>
+                        <li><a href="#">Heavy Equipment</a></li>
+                        <li><a href="#">Customer Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BuildPro Construction. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Sticky header on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+        
+        // Carousel functionality
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        let currentSlide = 0;
+        const slideCount = carouselItems.length;
+        
+        function showSlide(index) {
+            // Hide all slides
+            carouselItems.forEach(item => item.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            // Show the selected slide
+            carouselItems[index].classList.add('active');
+            indicators[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        // Auto-rotate slides every 5 seconds
+        function autoRotate() {
+            currentSlide = (currentSlide + 1) % slideCount;
+            showSlide(currentSlide);
+        }
+        
+        // Set up click events for indicators
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
+                // Reset auto-rotate timer when manually changing slides
+                clearInterval(rotateInterval);
+                rotateInterval = setInterval(autoRotate, 5000);
+            });
+        });
+        
+        // Start auto-rotation
+        let rotateInterval = setInterval(autoRotate, 5000);
+        
+        // Pause auto-rotation when hovering over carousel
+        const carousel = document.querySelector('.carousel');
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(rotateInterval);
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            rotateInterval = setInterval(autoRotate, 5000);
+        });
+    </script>
+</body>
+</html>
